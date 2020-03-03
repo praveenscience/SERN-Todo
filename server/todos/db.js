@@ -10,14 +10,22 @@ const db = new sqlite3.Database("./todos.sqlite3", err => {
 });
 
 const createTable = () => {
-  db.run("CREATE TABLE IF NOT EXISTS `todos` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `content` TEXT, `done` INTEGER)", insertData);
-  console.log("Dummy data added!");
+  db.run("CREATE TABLE IF NOT EXISTS `todos` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `content` TEXT, `done` INTEGER)", initialiseData);
 };
 
-const insertData = () => {
+const initialiseData = () => {
   console.log("Table created!");
   const DummyTodos = ["Get Milk", "Get Eggs", "Get Kittens"];
-  DummyTodos.forEach(todo => {
-    db.run("INSERT INTO `todos` (`content`, `done`) VALUES (?, ?)", [todo, 0]);
+  db.all("SELECT * FROM `todos`", (err, rows) => {
+    if (rows.length === 0) {
+      db.run("DELETE FROM `todos`", () => {
+        db.run("DELETE FROM `sqlite_sequence` WHERE `name`='todos'", () => {
+          DummyTodos.forEach(todo => {
+            db.run("INSERT INTO `todos` (`content`, `done`) VALUES (?, ?)", [todo, 0]);
+          });
+          console.log("Dummy data added!");
+        });
+      });
+    }
   });
 };
