@@ -40,4 +40,15 @@ const runSqlGetJson = (sql, params, res, mapper = a => a) => {
   });
 };
 
-module.exports = runSqlGetJson;
+const runSqlExecJson = (sql, params, res, mapper = a => a) => {
+  db.run(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    } else {
+      if (rows) res.json(rows.map(mapper));
+      else res.json({ success: true });
+    }
+  });
+};
+
+module.exports = { runSqlGetJson, runSqlExecJson };
