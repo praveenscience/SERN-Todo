@@ -4,6 +4,7 @@
   "description": "ToDo API Server",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Me only",
