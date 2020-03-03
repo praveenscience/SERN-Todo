@@ -1,0 +1,36 @@
+.InputForm {
+  margin: 15px;
+  @media screen and (max-width: 575px) {
+    margin: 25px;
+  }
+  input,
+  button {
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    font-family: inherit;
+    font-size: 1.2em;
+    box-shadow: 0 0 3px 1px rgba(#66f, 0.75);
+    @media screen and (max-width: 575px) {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  }
+  input {
+    margin-right: 25px;
+    &:focus {
+      box-shadow: 0 0 3px 1px rgba(#66f, 1);
+      outline: none;
+    }
+  }
+  .btn {
+    background-color: rgba(#66f, 0.25);
+    padding-right: 7px;
+    i {
+      position: relative;
+      top: 1px;
+    }
+  }
+}
