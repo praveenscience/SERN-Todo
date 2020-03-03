@@ -1,4 +1,4 @@
-const sqlite3 = require("sqlite3");
+const sqlite3 = require("sqlite3").verbose();
 
 const db = new sqlite3.Database("./todos.sqlite3", err => {
   if (err) {
@@ -29,3 +29,15 @@ const initialiseData = () => {
     }
   });
 };
+
+const runSqlGetJson = (sql, params, res, mapper = a => a) => {
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    } else {
+      res.json(rows.map(mapper));
+    }
+  });
+};
+
+module.exports = runSqlGetJson;
