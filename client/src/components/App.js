@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header/Header";
 import InputForm from "./TodoInput/InputForm";
 import TodoList from "./Todos/TodoList";
-import { GetTodos, AddTodo } from "../services/API";
+import { GetTodos, AddTodo, DeleteTodo } from "../services/API";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -21,12 +21,17 @@ const App = () => {
       }
     });
   };
+  const handleDelete = todo => {
+    DeleteTodo(todo).then(() => {
+      refreshTodos();
+    });
+  };
   return (
     <div className="App">
       <Header Title="ToDos" Dark={true} />
       <InputForm onSubmit={handleSubmit} />
       {todos.length > 0 ? (
-        <TodoList todos={todos} />
+        <TodoList todos={todos} handleDelete={handleDelete} />
       ) : (
         <img src="https://i.imgur.com/YpQUQt7.gif" alt="Loading..." />
       )}

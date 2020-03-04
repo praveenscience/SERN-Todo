@@ -13,12 +13,19 @@
     margin-bottom: 10px;
     padding: 10px;
     font-size: 1.25em;
+    overflow: hidden;
     i {
       margin-right: 10px;
       font-size: 1.1em;
       position: relative;
       vertical-align: middle;
       top: -1px;
+      &.icon-trash {
+        top: 2px;
+        right: -5px;
+        float: right;
+        font-size: 0.95em;
+      }
     }
   }
 }
