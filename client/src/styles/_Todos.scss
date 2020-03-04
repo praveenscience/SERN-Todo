@@ -1,0 +1,24 @@
+.TodoList {
+  margin: 15px;
+  @media screen and (max-width: 575px) {
+    margin: 25px;
+  }
+  h2 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+  }
+  &-Item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.25em;
+    i {
+      margin-right: 10px;
+      font-size: 1.1em;
+      position: relative;
+      vertical-align: middle;
+      top: -1px;
+    }
+  }
+}
