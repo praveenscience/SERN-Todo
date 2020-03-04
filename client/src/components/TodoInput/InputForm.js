@@ -5,8 +5,12 @@ const InputForm = ({ ShowLabel = false, defaultValue, onSubmit }) => {
   const handleChange = e => {
     setInput(e.target.value);
   };
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(Input);
+  };
   return (
-    <form className="InputForm" onSubmit={onSubmit}>
+    <form className="InputForm" onSubmit={handleSubmit}>
       <label>
         {ShowLabel && <strong>Enter Todo Item:</strong>}
         <input

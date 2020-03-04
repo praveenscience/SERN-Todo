@@ -2,20 +2,29 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header/Header";
 import InputForm from "./TodoInput/InputForm";
 import TodoList from "./Todos/TodoList";
-import { GetTodos } from "../services/API";
+import { GetTodos, AddTodo } from "../services/API";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  useEffect(() => {
+  const refreshTodos = () =>
     GetTodos().then(res => {
       console.log(res);
       setTodos(res.data);
     });
+  useEffect(() => {
+    refreshTodos();
   }, []);
+  const handleSubmit = todo => {
+    AddTodo(todo).then(res => {
+      if (res.data.success) {
+        refreshTodos();
+      }
+    });
+  };
   return (
     <div className="App">
       <Header Title="ToDos" Dark={true} />
-      <InputForm />
+      <InputForm onSubmit={handleSubmit} />
       {todos.length > 0 ? (
         <TodoList todos={todos} />
       ) : (
