@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TodoItem from "./_TodoItem";
-import { GetTodos } from "../../services/API";
 
-const TodoList = () => {
-  const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    GetTodos().then(res => {
-      console.log(res);
-      setTodos(res.data);
-    });
-  }, []);
+const TodoList = ({ todos }) => {
   return (
     <div className="TodoList">
       <h2>Your ToDos</h2>
