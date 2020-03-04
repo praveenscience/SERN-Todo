@@ -8,6 +8,7 @@ const InputForm = ({ ShowLabel = false, defaultValue, onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(Input);
+    setInput("");
   };
   return (
     <form className="InputForm" onSubmit={handleSubmit}>
